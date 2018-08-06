@@ -82,6 +82,9 @@ component {
 
     // programmatically register new beans with the factory (add a singleton name/value pair)
     public any function addBean( string beanName, any beanValue ) {
+        if ( containsBean( beanName ) ) {
+            throw "Bean `#beanName#` already declared!";
+        }
         variables.beanInfo[ beanName ] = {
             name = beanName, value = beanValue, isSingleton = true
         };
